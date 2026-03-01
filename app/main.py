@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
 app = FastAPI(
-    title="FastAPI GitOps Starter",
+    title="FastAPI GitOps Starter 2",
     description="A starter template for learning GitOps with FastAPI",
     version="1.0.0",
     root_path=os.getenv("ROOT_PATH", "/GitOps-Starter"),
