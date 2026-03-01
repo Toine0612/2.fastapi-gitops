@@ -23,16 +23,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install Ruff
-        run: pip install ruff
-
       - name: Lint with Ruff
-        run: ruff check app/ tests/
+        uses: astral-sh/ruff-action@v3
+        with:
+          args: 'check app/ tests/'
 
   test:
     name: Run Tests
@@ -88,6 +82,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: ./docker/Dockerfile
           push: ${{ github.event_name == 'release' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
